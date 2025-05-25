@@ -11,16 +11,13 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: |
-          echo "No extra dependencies specified"
 
       - name: Build mod
         working-directory: "Keyboard on mobile"
         run: |
+          # Run your build command here, example:
           geode build -p ios
 
       - name: Upload build artifact
