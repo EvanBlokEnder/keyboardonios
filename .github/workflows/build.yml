@@ -1,4 +1,4 @@
-name: Build Geode iOS Mod
+name: Build iOS Mod
 
 on:
   push:
@@ -11,22 +11,22 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: |
-        brew install cmake ninja
+      - name: Install dependencies
+        run: |
+          # Add dependency installs here if needed
+          # Example: brew install cmake
+          echo "No extra dependencies specified"
 
-    - name: Build mod
-      run: |
-        mkdir build
-        cd build
-        cmake .. -G Ninja
-        ninja
+      - name: Build mod
+        working-directory: "Keyboard on mobile"
+        run: |
+          geode build -p ios
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: geode-mod
-        path: build/
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: iOS-Mod-Build
+          path: "Keyboard on mobile/build/ios"
