@@ -1,0 +1,14 @@
+{
+	"geode": "4.4.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "evanblokender.keyboard_on_mobile",
+	"name": "Keyboard on mobile",
+	"version": "v1.0.0",
+	"developer": "EvanBlokEnder",
+	"description": "Lets you use keyboards on ios to jump. why isnt this a base game feature?"
+}
