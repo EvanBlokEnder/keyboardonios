@@ -1,0 +1,40 @@
+name: Build Geode iOS Mod
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies (Homebrew & Geode CLI)
+        run: |
+          # Install Homebrew if not already installed
+          if ! command -v brew &> /dev/null; then
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          fi
+          brew install cmake ninja
+
+          # Install Geode CLI
+          curl -fsSL https://get.geode.gg/cli | bash
+
+      - name: Install Geode iOS SDK binaries
+        run: |
+          geode sdk install-binaries -p ios64
+
+      - name: Build the mod for iOS 64-bit
+        run: |
+          geode build -p ios64
+
+      - name: Upload built mod artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-geode-mod
+          path: build-ios64/*.geode
