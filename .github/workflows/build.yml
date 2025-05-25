@@ -11,17 +11,24 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build mod
-        working-directory: "Keyboard on mobile"
+      - name: Install dependencies
         run: |
-          # Run your build command here, example:
-          geode build -p ios
+          # Install dependencies if any
+          echo "Add dependency installs here"
 
+      - name: Build mod
+        run: |
+          mkdir -p build
+          cd build
+          cmake ..
+          make
+          # Assuming output is in Keyboard on mobile/build/ios
+          
       - name: Upload build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: iOS-Mod-Build
           path: "Keyboard on mobile/build/ios"
