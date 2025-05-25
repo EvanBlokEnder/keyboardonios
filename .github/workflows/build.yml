@@ -16,8 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # Add dependency installs here if needed
-          # Example: brew install cmake
           echo "No extra dependencies specified"
 
       - name: Build mod
@@ -26,7 +24,7 @@ jobs:
           geode build -p ios
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: iOS-Mod-Build
           path: "Keyboard on mobile/build/ios"
